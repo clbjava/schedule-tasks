@@ -32,6 +32,11 @@ public class Task implements Runnable {
 
         //第二个参数为首次执行的延时时间，第三个参数为定时执行的间隔时间  
         service.scheduleAtFixedRate(task, 2, 1, TimeUnit.SECONDS);
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         service.scheduleAtFixedRate(task1, 2, 1, TimeUnit.SECONDS);
 
 
@@ -53,7 +58,12 @@ public class Task implements Runnable {
 
 
     @Override
-    public void run() {
-        System.out.println(Thread.currentThread() + "Hello !!" + i + ":" + dateFormat.format(new Date()));
+    public void run()  {
+        System.out.println(Thread.currentThread().getId() + "-Hello !!" + i + ":" + dateFormat.format(new Date()));
+        try {
+            throw new Exception("exception");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
