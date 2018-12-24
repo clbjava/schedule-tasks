@@ -27,10 +27,11 @@ public class Sort {
      * @param numbers 需要排序的整型数组
      * O(n*n)
      */
-    public static void bubbleSort(int[] numbers) {
+    public static void bubbleSort(int[] numbers) throws JsonProcessingException {
         int temp = 0;
         int size = numbers.length;
         for (int i = 0; i < size - 1; i++) {
+
             for (int j = 0; j < size - 1 - i; j++) {
                 if (numbers[j] > numbers[j + 1])  //交换两数位置
                 {
@@ -39,6 +40,8 @@ public class Sort {
                     numbers[j + 1] = temp;
                 }
             }
+
+            LOG.info("selectSort:{}{}", i,MAPPER.writeValueAsString(numbers));
         }
     }
 
@@ -92,7 +95,7 @@ public class Sort {
 
     public static void selectSort(int sort[]) {
         //int mini=sort[0];
-        int log=0;
+        int log = 0;
         int size = sort.length;
         for (int i = 0; i < size; i++) {
             int k = i;
@@ -109,8 +112,9 @@ public class Sort {
     }
 
     public static void main(String[] args) throws JsonProcessingException {
-       /* int sort[] = {30,19, 50, 100,30, 7, 60, 102, 68, 46, 80};
-        selectSort(sort);*/
+       int sort[] = {49,27,13,76,97,65,38,49};
+        /* selectSort(sort);*/
+        bubbleSort(sort);
 
     }
 }
